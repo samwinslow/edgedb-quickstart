@@ -1,6 +1,7 @@
 {
   "scripts": {
     "typegen": "npx edgeql-js --target ts",
+    "apply-migration": "edgedb migration create && edgedb migrate",
     "start": "cd api; yarn start"
   },
   "dependencies": {

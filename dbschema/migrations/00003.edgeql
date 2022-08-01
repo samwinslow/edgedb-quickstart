@@ -4,7 +4,7 @@ CREATE MIGRATION m1rlluovxoeshrljhz2aduexusrggiec35wnaxhbmfvlc6jr2cw4tq
   CREATE GLOBAL default::current_uid -> std::str;
   ALTER TYPE default::Person {
       CREATE REQUIRED PROPERTY firebase_uid -> std::str {
-          SET REQUIRED USING ('unknown');
+          SET REQUIRED USING ('A9XRBaBSZkffMfY0nRbssPFSDMf1');
       };
       CREATE ACCESS POLICY read_phone_number
           ALLOW SELECT USING ((.firebase_uid ?= GLOBAL default::current_uid));
