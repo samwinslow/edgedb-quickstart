@@ -1,10 +1,14 @@
 import express from 'express'
+import { authMiddleware } from './middleware/auth'
 
 const app = express()
 const PORT = 3001
 
+app.use(authMiddleware)
+
 app.get('/', (req, res) => {
-  res.send('OK!')
+  const user = req.user
+  res.send(`Hello ${user?.uid}`)
 })
 
 app.listen(PORT, () => {

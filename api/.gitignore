@@ -1,2 +1,4 @@
 node_modules
 dist
+config/env/staging.json
+config/env/production.json
