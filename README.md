@@ -1,0 +1,2 @@
+# edgedb-quickstart
+EdgeDB Quickstart
