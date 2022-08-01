@@ -575,6 +575,11 @@ ecdsa-sig-formatter@1.0.11, ecdsa-sig-formatter@^1.0.11:
   dependencies:
     safe-buffer "^5.0.1"
 
+edgedb@^0.21.1:
+  version "0.21.1"
+  resolved "https://registry.yarnpkg.com/edgedb/-/edgedb-0.21.1.tgz#4a1b719e6ca8ed29b0921c0ea6fe7cd0ffb9d795"
+  integrity sha512-bW6UHyXJ9Rsgm5elC4BDRhBVcATg88IAX9tlfwkqFOGB7MumSbPygImnSd+DOlgmuzL4x6a+m7ckhDRDxNoolg==
+
 ee-first@1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/ee-first/-/ee-first-1.1.1.tgz#590c61156b0ae2f4f0255732a158b266bc56b21d"

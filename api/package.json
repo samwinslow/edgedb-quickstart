@@ -4,6 +4,7 @@
     "start": "yarn run build && concurrently -k -n tsc,nodemon \"tsc --watch\" \"nodemon --watch dist dist/index.js\""
   },
   "dependencies": {
+    "edgedb": "^0.21.1",
     "express": "^4.18.1",
     "firebase-admin": "^11.0.1",
     "nodemon": "^2.0.19",
