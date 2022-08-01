@@ -1,7 +1,7 @@
 {
   "scripts": {
     "build": "rm -rf dist && tsc",
-    "start": "yarn run build; concurrently -k -n tsc,nodemon \"tsc --watch\" \"nodemon dist/api/src/index.js --watch src\""
+    "start": "yarn run build; concurrently -k -n tsc,nodemon \"tsc --watch\" \"nodemon dist/api/src/index.js\""
   },
   "dependencies": {
     "edgedb": "^0.21.1",
