@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "typegen": "npx edgeql-js --target ts"
+    "typegen": "npx edgeql-js --target ts",
+    "start": "cd api; yarn start"
   },
   "dependencies": {
     "edgedb": "^0.21.1"

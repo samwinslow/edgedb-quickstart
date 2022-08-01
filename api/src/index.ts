@@ -17,8 +17,9 @@ app.get('/', (req, res) => {
 app.get('/users', asyncMiddleware(async (req, res) => {
   const query = e.select(e.Person, (person) => ({
     full_name: true,
+    phone_number: true,
   }))
-  const result = await query.run(client)
+  const result = await query.run(client.withGlobals({ current_uid: req.user?.uid }))
   res.send(result)
 }))
 
