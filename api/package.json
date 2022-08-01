@@ -1,7 +1,7 @@
 {
   "scripts": {
     "build": "rm -rf dist && tsc",
-    "start": "yarn run build && concurrently -k -n tsc,nodemon \"tsc --watch\" \"nodemon --watch dist dist/index.js\""
+    "start": "yarn run build; concurrently -k -n tsc,nodemon \"tsc --watch\" \"nodemon dist/api/src/index.js --watch src\""
   },
   "dependencies": {
     "edgedb": "^0.21.1",
@@ -13,5 +13,6 @@
   "devDependencies": {
     "@types/express": "^4.17.13",
     "concurrently": "^7.3.0"
-  }
+  },
+  "module": "commonjs"
 }

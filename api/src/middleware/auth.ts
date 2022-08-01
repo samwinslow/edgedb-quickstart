@@ -1,7 +1,7 @@
 import { Request, Response } from 'express'
 import admin from 'firebase-admin'
 
-const firebaseConfig = require('../../config/env/staging.json')
+import firebaseConfig from '../../config/env/staging.json'
 
 admin.initializeApp(firebaseConfig)
 

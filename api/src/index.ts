@@ -15,8 +15,9 @@ app.get('/', (req, res) => {
 })
 
 app.get('/users', asyncMiddleware(async (req, res) => {
-  const { user } = req
-  const query = e.select(e.datetime_current())
+  const query = e.select(e.Person, (person) => ({
+    full_name: true,
+  }))
   const result = await query.run(client)
   res.send(result)
 }))

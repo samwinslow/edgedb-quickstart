@@ -1,5 +1,9 @@
 {
+  "scripts": {
+    "typegen": "npx edgeql-js --target ts"
+  },
   "dependencies": {
     "edgedb": "^0.21.1"
-  }
+  },
+  "module": "commonjs"
 }
