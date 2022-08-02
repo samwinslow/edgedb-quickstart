@@ -8,18 +8,31 @@ const app = express()
 const PORT = 3001
 
 app.use(authMiddleware)
+app.use(express.json())
 
 app.get('/', (req, res) => {
   const { user } = req
   res.send(`Hello ${user?.uid}`)
 })
 
+// Can run a query and expose a traditional REST interface
 app.get('/users', asyncMiddleware(async (req, res) => {
   const query = e.select(e.Person, (person) => ({
     full_name: true,
     phone_number: true,
   }))
   const result = await query.run(client.withGlobals({ current_uid: req.user?.uid }))
+  res.send(result)
+}))
+
+// ... Or proxy the client and accept a string
+// Example request body:
+// {
+//   "query": "select Person { full_name };"
+// }
+app.post('/query', asyncMiddleware(async (req, res) => {
+  const query: string = req.body.query
+  const result = await client.withGlobals({ current_uid: req.user?.uid }).query(query)
   res.send(result)
 }))
 
