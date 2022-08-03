@@ -23,6 +23,17 @@ const getUsers = async (userIds: string[]) => {
   return response
 }
 
+export const getEvent = async (eventId: string): Promise<Event>  => {
+  const query = e.select(e.Event, (event) => ({
+    id: true,
+    title: true,
+    guests: true,
+    filter: e.op(event.id, '=', e.uuid(eventId)),
+  }))
+  const response = await runQuery(query)
+  return response
+}
+
 const App = () => {
   return (
     <div className="App">

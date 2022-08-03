@@ -2,8 +2,7 @@ import express from 'express'
 import authMiddleware from './middleware/auth'
 import asyncMiddleware from './middleware/async'
 import e from '../../dbschema/edgeql-js'
-import { client } from './db'
-import { $, Client } from 'edgedb'
+import { createClient } from './db'
 
 const app = express()
 const PORT = 3001
@@ -17,47 +16,37 @@ app.get('/', (req, res) => {
 })
 
 // Can run a query and expose a traditional REST interface
+// app.get('/users', asyncMiddleware(async (req, res) => {
+//   const query = e.select(e.Person, (person) => ({
+//     full_name: true,
+//     phone_number: true,
+//   }))
+//   const result = await query.run(client.withGlobals({ current_uid: req.user?.uid }))
+//   res.send(result)
+// }))
+
+
+// Better yet, use a DB abstraction layer
 app.get('/users', asyncMiddleware(async (req, res) => {
+  const client = createClient({ current_uid: req.user?.uid })
   const query = e.select(e.Person, (person) => ({
     full_name: true,
     phone_number: true,
   }))
-  const result = await query.run(client.withGlobals({ current_uid: req.user?.uid }))
+  const result = await query.run(client)
   res.send(result)
 }))
 
-// Can abstract the client creation and error handling like so
-const createClient = (globals: { current_uid?: string } & Record<string, any>): Client =>
-  client.withGlobals(globals)
 
-const runQuery = async (query: $.Expression, withClient: Client) => {
-  try {
-    const result = await query.run(withClient)
-    return result
-  } catch (err) {
-    console.error(err)
-  }
-  return null
-}
-
-app.get('/users-v2', asyncMiddleware(async (req, res) => {
-  const c = createClient({ current_uid: req.user?.uid })
-  const query = e.select(e.Person, (person) => ({
-    full_name: true,
-    phone_number: true,
-  }))
-  const result = await runQuery(query, c)
-  res.send(result)
-}))
-
-// ... Or proxy the client and accept a string
+// ... Or proxy the client and accept an EdgeQL string
 // Example request body:
 // {
 //   "query": "select Person { full_name };"
 // }
 app.post('/query', asyncMiddleware(async (req, res) => {
   const query: string = req.body.query
-  const result = await client.withGlobals({ current_uid: req.user?.uid }).query(query)
+  const client = createClient({ current_uid: req.user?.uid })
+  const result = await client.query(query)
   res.send(result)
 }))
 

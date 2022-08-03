@@ -6,5 +6,6 @@
   "storageBucket": "seven-staging.appspot.com",
   "messagingSenderId": "",
   "appId": "",
-  "measurementId": ""
+  "measurementId": "",
+  "edgedbDSN": "edgedb://"
 }
