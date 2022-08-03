@@ -14,8 +14,8 @@ module default {
     property ticket_price -> int64;
     multi link guests -> Person;
     link host -> Person;
-    access policy delete_event allow delete using (
-      .host.firebase_uid ?= global current_uid
-    )
+    # access policy delete_event allow delete using (
+    #   .host.firebase_uid ?= global current_uid
+    # )
   }
 }

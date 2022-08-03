@@ -5,8 +5,7 @@
     "start": "cd api; yarn start"
   },
   "dependencies": {
-    "edgedb": "^0.21.1",
-    "@dbschema/local": "file:../../dbschema/edgeql-js"
+    "edgedb": "^0.21.1"
   },
   "module": "commonjs"
 }
