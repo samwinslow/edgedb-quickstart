@@ -1,5 +1,6 @@
 import express from 'express'
 import authMiddleware from './middleware/auth'
+import cors from 'cors'
 import asyncMiddleware from './middleware/async'
 import e from '../../dbschema/edgeql-js'
 import { createClient } from './db'
@@ -7,8 +8,13 @@ import { createClient } from './db'
 const app = express()
 const PORT = 3001
 
+// Include CORS middleware before all others.
+app.use(cors({
+  origin: ['http://localhost:19006'],
+}))
 app.use(authMiddleware)
 app.use(express.json())
+
 
 app.get('/', (req, res) => {
   const { user } = req

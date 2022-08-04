@@ -5,6 +5,8 @@
     "start": "cd api; yarn start"
   },
   "dependencies": {
+    "@types/cors": "^2.8.12",
+    "cors": "^2.8.5",
     "edgedb": "^0.21.1"
   },
   "module": "commonjs"
